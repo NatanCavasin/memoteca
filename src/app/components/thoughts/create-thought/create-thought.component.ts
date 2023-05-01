@@ -24,7 +24,13 @@ export class CreateThoughtComponent implements OnInit {
     Swal.fire('Pensamento criado :)', '', 'success')
   }
   cancelThought() {
-    Swal.fire('Pensamento cancelado :(', '', 'success')
+    Swal.fire({
+      title: 'Pensamento cancelado :\'(',
+      icon: 'success',
+      timer: 1500,
+      timerProgressBar: true,
+      showConfirmButton: false,
+    })
   }
 
 }
