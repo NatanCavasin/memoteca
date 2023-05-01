@@ -4,15 +4,15 @@
     </header>
     <form>
         <label for="thought">Pensamento</label>
-        <input type="textarea" class="input" id ="thought" name="thought" placeholder="Digite o pensamento" [value]="thought.content">
+        <input type="textarea" class="input" id ="thought" name="thought" placeholder="Digite o pensamento" [(ngModel)]="thought.content">
 
         <label for="autorship">Autoria ou fonte</label>
-        <input type="text" class="input" id ="autorship" name="autorship" placeholder="Digite a autoria ou a fonte" [value]="thought.autorship">
+        <input type="text" class="input" id ="autorship" name="autorship" placeholder="Digite a autoria ou a fonte" [(ngModel)]="thought.autorship">
 
         <div class="container-radio">
             <div class="radio-modelo">
                 <label for="modelo1">
-                    <input type="radio" id="modelo1" value="modelo1" name="modelo-card">
+                    <input type="radio" id="modelo1" value="modelo1" name="modelo-card" [(ngModel)]="thought.model">
                     <div class="custom-radio">
                         <span></span>
                     </div>
@@ -27,7 +27,7 @@
             </div>
             <div class="radio-modelo">
                 <label for="modelo2">
-                    <input type="radio" id="modelo2" value="modelo2" name="modelo-card">
+                    <input type="radio" id="modelo2" value="modelo2" name="modelo-card" [(ngModel)]="thought.model">
                     <div class="custom-radio">
                         <span></span>
                     </div>
@@ -42,7 +42,7 @@
             </div>
             <div class="radio-modelo">
                 <label for="modelo3">
-                    <input type="radio" id="modelo3" value="modelo3" name="modelo-card">
+                    <input type="radio" id="modelo3" value="modelo3" name="modelo-card" [(ngModel)]="thought.model">
                     <div class="custom-radio">
                         <span></span>
                     </div>
@@ -56,9 +56,9 @@
                 </div>
             </div>
         </div>
-        <div class="acoes">
-            <button (click)="saveThought()" class="botao">Salvar</button>
-            <button class="botao">Cancelar</button> 
-        </div>
     </form>
+    <div class="acoes">
+        <button (click)="saveThought()" class="botao">Salvar</button>
+        <button (click)="cancelThought()" class="botao">Cancelar</button> 
+    </div>
 </section>

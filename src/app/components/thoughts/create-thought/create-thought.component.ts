@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-create-thought',
@@ -11,7 +12,7 @@ export class CreateThoughtComponent implements OnInit {
     id: '1',
     content: 'Aprendendo Angular',
     autorship: 'Dev',
-    model: 'modelo3'
+    model: 'modelo1'
   }
 
   constructor() { }
@@ -20,7 +21,10 @@ export class CreateThoughtComponent implements OnInit {
   }
 
   saveThought() {
-    alert("Pensamento criado :)")
+    Swal.fire('Pensamento criado :)', '', 'success')
+  }
+  cancelThought() {
+    Swal.fire('Pensamento cancelado :(', '', 'success')
   }
 
 }
