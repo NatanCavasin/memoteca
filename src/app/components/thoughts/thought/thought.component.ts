@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Pensamento } from '../thoughts';
+import { Thought } from '../thoughts';
 
 @Component({
   selector: 'app-thought',
@@ -8,7 +8,7 @@ import { Pensamento } from '../thoughts';
 })
 export class ThoughtComponent implements OnInit {
 
-  @Input() thought: Pensamento = {
+  @Input() thought: Thought = {
     id: 0,
     content: '',
     autorship: '',
@@ -22,7 +22,7 @@ export class ThoughtComponent implements OnInit {
   }
 
   widthThought(): string {
-    return this.thought.content.length >= 256 ? 'pensamento-g' : 'pensamento-p';
+    return this.thought.content && this.thought.content.length >= 256 ? 'pensamento-g' : 'pensamento-p';
   }
 
 }

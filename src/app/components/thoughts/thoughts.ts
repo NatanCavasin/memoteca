@@ -1,6 +1,6 @@
 //Modelo de retorno da API
-export interface Pensamento {
-    id: number;
+export interface Thought {
+    id?: number;
     content: string;
     autorship: string;
     model: string;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2'
-import { Pensamento } from '../thoughts';
+import { Thought } from '../thoughts';
+import { ThoughtService } from '../thought.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-thought',
@@ -9,20 +11,23 @@ import { Pensamento } from '../thoughts';
 })
 export class CreateThoughtComponent implements OnInit {
 
-  thought : Pensamento ={
-    id: 1,
-    content: 'Aprendendo Angular',
-    autorship: 'Dev',
+  thought : Thought = {
+    content: '',
+    autorship: '',
     model: 'modelo1'
   }
 
-  constructor() { }
+  constructor(private service: ThoughtService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
   saveThought() {
-    Swal.fire('Pensamento criado :)', '', 'success')
+    this.service.criar(this.thought).subscribe(() =>
+       Swal.fire('Pensamento criado :)', '', 'success').then(() => this.router.navigate(['/listThoughts']))
+    );
+    
   }
   cancelThought() {
     Swal.fire({
