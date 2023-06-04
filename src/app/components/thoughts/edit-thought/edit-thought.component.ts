@@ -3,6 +3,7 @@ import { Thought } from '../thoughts';
 import Swal from 'sweetalert2';
 import { ThoughtService } from '../thought.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-thought',
@@ -11,26 +12,33 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditThoughtComponent implements OnInit {
 
-  thought : Thought = {
-    id: 0,
-    content: '',
-    autorship: '',
-    model: 'modelo1'
-  }
+  form!: FormGroup;
 
   constructor(private service: ThoughtService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.service.buscarPorId(parseInt(id!)).subscribe((thought) => {
-      this.thought = thought;
+      this.form = this.formBuilder.group({
+        id : [thought.id],
+        content: [thought.content, Validators.compose([
+                        Validators.required, 
+                        Validators.pattern(/(.|\s)*\S(.|\s)*/)])],
+        autorship: [thought.autorship,  Validators.compose([
+                            Validators.required, 
+                            Validators.pattern(/(.|\s)*\S(.|\s)*/), 
+                            Validators.minLength(3)])],
+        model: [thought.model]
+      })
     })
+     
   }
 
   saveThought() {
-    this.service.editar(this.thought).subscribe(() =>
+    this.service.editar(this.form.value).subscribe(() =>
        Swal.fire('Pensamento editado :)', '', 'success').then(() => this.router.navigate(['/listThoughts']))
     );
     
@@ -44,6 +52,10 @@ export class EditThoughtComponent implements OnInit {
       showConfirmButton: false,
     });
     this.router.navigate(['/listThoughts'])
+  }
+
+  enableButton(): string{
+    return this.form.valid ? 'botao' : 'botao__desabilitado';
   }
 
 }

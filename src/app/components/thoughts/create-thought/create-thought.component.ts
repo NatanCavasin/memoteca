@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 import { Thought } from '../thoughts';
 import { ThoughtService } from '../thought.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-thought',
@@ -11,23 +12,31 @@ import { Router } from '@angular/router';
 })
 export class CreateThoughtComponent implements OnInit {
 
-  thought : Thought = {
-    content: '',
-    autorship: '',
-    model: 'modelo1'
-  }
+  form!: FormGroup;
 
   constructor(private service: ThoughtService,
-              private router: Router) { }
+              private router: Router,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      content: ['', Validators.compose([
+                      Validators.required, 
+                      Validators.pattern(/(.|\s)*\S(.|\s)*/)])],
+      autorship: ['',  Validators.compose([
+                          Validators.required, 
+                          Validators.pattern(/(.|\s)*\S(.|\s)*/), 
+                          Validators.minLength(3)])],
+      model: ['modelo1']
+    })
   }
 
   saveThought() {
-    this.service.criar(this.thought).subscribe(() =>
-       Swal.fire('Pensamento criado :)', '', 'success').then(() => this.router.navigate(['/listThoughts']))
-    );
-    
+    if(this.form.valid){
+      this.service.criar(this.form.value).subscribe(() =>
+        Swal.fire('Pensamento criado :)', '', 'success').then(() => this.router.navigate(['/listThoughts']))
+      );
+    } 
   }
   cancelThought() {
     Swal.fire({
@@ -37,6 +46,10 @@ export class CreateThoughtComponent implements OnInit {
       timerProgressBar: true,
       showConfirmButton: false,
     })
+  }
+
+  enableButton(): string{
+    return this.form.valid ? 'botao' : 'botao__desabilitado';
   }
 
 }

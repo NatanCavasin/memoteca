@@ -17,6 +17,12 @@
       "content": "Angular é o melhor'",
       "autorship": "Dev Alura",
       "model": "modelo3"
+    },
+    {
+      "content": "Novo pensamento",
+      "autorship": "eu msm",
+      "model": "modelo3",
+      "id": 4
     }
   ]
 }
