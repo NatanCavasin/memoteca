@@ -27,7 +27,8 @@ export class CreateThoughtComponent implements OnInit {
                           Validators.required, 
                           Validators.pattern(/(.|\s)*\S(.|\s)*/), 
                           Validators.minLength(3)])],
-      model: ['modelo1']
+      model: ['modelo1'],
+      favorite: false
     })
   }
 

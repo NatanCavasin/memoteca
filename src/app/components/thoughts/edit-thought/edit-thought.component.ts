@@ -31,7 +31,8 @@ export class EditThoughtComponent implements OnInit {
                             Validators.required, 
                             Validators.pattern(/(.|\s)*\S(.|\s)*/), 
                             Validators.minLength(3)])],
-        model: [thought.model]
+        model: [thought.model],
+        favorite: [thought.favorite]
       })
     })
      

@@ -4,4 +4,5 @@ export interface Thought {
     content: string;
     autorship: string;
     model: string;
+    favorite: boolean;
 }

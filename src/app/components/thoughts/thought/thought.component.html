@@ -3,6 +3,9 @@
     <p class="conteudo"> {{ thought.content }} </p>
     <p class="conteudo"> <b>{{ thought.autorship }}</b> </p>
     <div class="acoes">
+        <button class="botao-favorito" (click)="updateFavorite()">
+            <img src="../../../../assets/imagens/icone-favorito-{{ alterFavoriteIcon() }}.png" alt="ícone favorito {{ alterFavoriteIcon() }}">
+        </button>
         <button class="botao-editar" routerLink="/thoughts/editThought/{{thought.id}}">
             <img src="../../../../assets/imagens/icone-editar.png" alt="editar">
         </button>
