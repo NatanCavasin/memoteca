@@ -12,14 +12,14 @@
       "content": "Estudando Angular ",
       "autorship": "Dev Alura ",
       "model": "modelo3",
-      "favorite": false
+      "favorite": true
     },
     {
       "id": 3,
       "content": "Angular é o melhor'",
       "autorship": "Dev Alura",
       "model": "modelo3",
-      "favorite": true
+      "favorite": false
     },
     {
       "id": 4,
@@ -40,7 +40,21 @@
       "content": "O padrão é não ter padrão",
       "autorship": "MariL",
       "model": "modelo2",
-      "favorite": false
+      "favorite": true
+    },
+    {
+      "content": "Hoje é hoje, amanhã quem sabe",
+      "autorship": "PFU",
+      "model": "modelo2",
+      "favorite": false,
+      "id": 7
+    },
+    {
+      "content": "A pesquisa da tela de pesquisa não é a pesquisa da tela de pesquisa ",
+      "autorship": "Natan",
+      "model": "modelo3",
+      "favorite": false,
+      "id": 8
     }
   ]
 }

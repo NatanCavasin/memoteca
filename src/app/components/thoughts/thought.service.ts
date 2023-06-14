@@ -12,7 +12,7 @@ export class ThoughtService {
 
   constructor(private http: HttpClient) {}
 
-  listar(pag: number, filter: string): Observable<Thought[]>{
+  listar(pag: number, filter: string, favorites: boolean): Observable<Thought[]>{
     const itensOfPage = 6;
     let params = new HttpParams()
     .set("_page", pag)
@@ -21,9 +21,13 @@ export class ThoughtService {
     if(filter.trim().length > 2){
       params = params.set("q", filter);
     }
+    if(favorites){
+      params = params.set("favorite", true);
+    }
    // return this.http.get<Thought[]>(`${this.API}?_pages=${pag}&_limit=${itensOfPage}`);
    return this.http.get<Thought[]>(this.API, {params})
   }
+
 
   criar(thought: Thought): Observable<Thought> {
     return this.http.post<Thought>(this.API, thought);
